@@ -26,26 +26,28 @@ class _IndexScreenState extends State<IndexScreen>
     return Scaffold(
         backgroundColor: Colors.blue[200],
         body: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    LoaderIcon(controller: _controller),
-                    Expanded(child: Container()),
-                    const Icon(
-                      Icons.manage_search_sharp,
-                      size: 70,
-                      color: Colors.amber,
-                    )
-                  ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      LoaderIcon(controller: _controller),
+                      Expanded(child: Container()),
+                      const Icon(
+                        Icons.manage_search_sharp,
+                        size: 70,
+                        color: Colors.amber,
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              const CardContainer(),
-              const Padding(
-                  padding: EdgeInsets.only(top: 20), child: ListHorizontal()),
-            ],
+                const CardContainer(),
+                const Padding(
+                    padding: EdgeInsets.only(top: 20), child: ListHorizontal()),
+              ],
+            ),
           ),
         ));
   }
