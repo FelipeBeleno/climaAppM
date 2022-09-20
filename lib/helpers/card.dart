@@ -47,9 +47,11 @@ class ContentCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Container(
-              color: now.hour > 18 ? Colors.blueGrey[400] : Colors.amber,
               height: size.height * 0.5,
               width: size.width * 0.7,
+              decoration: BoxDecoration(
+                color: now.hour > 18 ? Colors.blueGrey[400] : Colors.amber,
+              ),
             ),
           ),
           Positioned(

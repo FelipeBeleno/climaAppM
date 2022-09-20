@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:clima_app/Search/city_delegate.dart';
 import 'package:clima_app/helpers/card.dart';
 import 'package:clima_app/helpers/list_view.dart';
 import 'package:clima_app/providers/app_provider.dart';
@@ -29,23 +30,37 @@ class _IndexScreenState extends State<IndexScreen>
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    children: [
-                      LoaderIcon(controller: _controller),
-                      Expanded(child: Container()),
-                      const Icon(
-                        Icons.manage_search_sharp,
-                        size: 70,
-                        color: Colors.amber,
-                      )
-                    ],
-                  ),
+                Row(
+                  children: [
+                    LoaderIcon(controller: _controller),
+                    Expanded(child: Container()),
+                    IconButton(
+                        padding: EdgeInsets.only(right: 50, bottom: 50),
+                        alignment: Alignment.topLeft,
+                        onPressed: () {
+                          print('hola');
+                          /*showSearch(
+                            context: context, delegate: CitySeachDelegate())*/
+                        },
+                        icon: Icon(
+                          Icons.manage_search_sharp,
+                          size: 70,
+                          color: Colors.amber,
+                        ))
+                  ],
                 ),
                 const CardContainer(),
-                const Padding(
-                    padding: EdgeInsets.only(top: 20), child: ListHorizontal()),
+                FutureBuilder(
+                  future: appProvider.getCityCurrent(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return const Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: ListHorizontal());
+                    }
+                    return Text('fallo');
+                  },
+                )
               ],
             ),
           ),
